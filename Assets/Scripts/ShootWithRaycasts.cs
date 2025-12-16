@@ -36,10 +36,10 @@ public class ShootWithRaycasts : MonoBehaviour
         {
             Debug.Log(hitInfo.transform.gameObject.name);
 
-            Target target = hitInfo.transform.gameObject.GetComponent<Target>();
-            if (target != null)
+            IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+            if (damageable != null)
             {
-                target.TakeDamage(damage);
+                damageable.TakeDamage((int)damage);
             }
 
             if (hitInfo.rigidbody != null)
@@ -47,5 +47,6 @@ public class ShootWithRaycasts : MonoBehaviour
                 hitInfo.rigidbody.AddForce(cam.transform.forward * hitForce, ForceMode.Impulse);
             }
         }
+
     }
 }
